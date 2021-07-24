@@ -24,7 +24,7 @@ def process():
     quality = request.args.get('quality')
 
     if quality is None:
-        quality = 100
+        quality = 80
 
     if new_width is not None and new_height is not None:
         new_width = int(new_width)
@@ -34,7 +34,7 @@ def process():
             image = image.resize((new_width, new_height))
 
     with BytesIO() as output:
-        image.save(output, format="WEBP", quality=quality)
+        image.save(output, format="WEBP", quality=quality, method=4)
 
         image_contents = output.getvalue()
 
